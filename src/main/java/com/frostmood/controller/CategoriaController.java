@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/categorias")
 public class CategoriaController {
 
+
     private final CategoriaRepository repo;
 
     public CategoriaController(CategoriaRepository repo) {

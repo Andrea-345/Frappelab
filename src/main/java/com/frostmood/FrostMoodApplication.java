@@ -10,3 +10,4 @@ public class FrostMoodApplication {
         SpringApplication.run(FrostMoodApplication.class, args);
     }
 }
+

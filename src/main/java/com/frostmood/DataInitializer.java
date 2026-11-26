@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @Component
 public class DataInitializer implements CommandLineRunner {
 
+
     private final CategoriaRepository categorias;
     private final FrappeRepository frappes;
 
