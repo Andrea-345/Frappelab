@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Eliminar categoría')}"></head>
+<body>
+<div class="bubbles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<nav th:replace="~{fragments :: nav('categorias')}"></nav>
+
+<main class="container narrow">
+    <div class="card form-card">
+        <h1>Eliminar categoría</h1>
+        <p class="warn">¿Estás seguro de que quieres eliminar esta categoría?</p>
+        <dl class="details">
+            <dt>Nombre</dt><dd th:text="${categoria.nombre}">Clásicos</dd>
+            <dt>Descripción</dt><dd th:text="${categoria.descripcion}">Descripción</dd>
+        </dl>
+        <form method="post" th:action="@{/categorias/delete/{id}(id=${categoria.id})}" class="form-actions">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a class="btn btn-ghost" th:href="@{/categorias}">Cancelar</a>
+        </form>
+    </div>
+</main>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

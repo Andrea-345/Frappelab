@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Eliminar frappé')}"></head>
+<body>
+<div class="bubbles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<nav th:replace="~{fragments :: nav('frappes')}"></nav>
+
+<main class="container narrow">
+    <div class="card form-card">
+        <h1>Eliminar frappé</h1>
+        <p class="warn">¿Estás seguro de que quieres eliminar este frappé?</p>
+        <dl class="details">
+            <dt>Nombre</dt><dd th:text="${frappe.nombre}">Oreo Cloud</dd>
+            <dt>Categoría</dt><dd th:text="${frappe.categoria.nombre}">Clásicos</dd>
+            <dt>Precio</dt><dd th:text="'$' + ${#numbers.formatDecimal(frappe.precio, 1, 2)}">$4.50</dd>
+        </dl>
+        <form method="post" th:action="@{/frappes/delete/{id}(id=${frappe.id})}" class="form-actions">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a class="btn btn-ghost" th:href="@{/frappes}">Cancelar</a>
+        </form>
+    </div>
+</main>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

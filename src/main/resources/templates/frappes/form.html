@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Frappé')}"></head>
+<body>
+<div class="bubbles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<nav th:replace="~{fragments :: nav('frappes')}"></nav>
+
+<main class="container narrow">
+    <div class="card form-card">
+        <h1 th:text="${frappe.id == null} ? 'Nuevo frappé' : 'Editar frappé'">Nuevo frappé</h1>
+
+        <form method="post"
+              th:action="${frappe.id == null} ? @{/frappes/create} : @{/frappes/edit/{id}(id=${frappe.id})}"
+              th:object="${frappe}">
+
+            <div class="field">
+                <label for="nombre">Nombre</label>
+                <input id="nombre" type="text" th:field="*{nombre}" placeholder="Ej. Oreo Cloud">
+                <span class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+            </div>
+
+            <div class="field">
+                <label for="categoria">Categoría</label>
+                <select id="categoria" th:field="*{categoria.id}">
+                    <option value="">-- Selecciona una categoría --</option>
+                    <option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.nombre}"></option>
+                </select>
+                <span class="error" th:if="${#fields.hasErrors('categoria.id')}" th:errors="*{categoria.id}"></span>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label for="base">Base</label>
+                    <select id="base" th:field="*{base}">
+                        <option value="">-- Elige --</option>
+                        <option th:each="b : ${bases}" th:value="${b}" th:text="${b}"></option>
+                    </select>
+                    <span class="error" th:if="${#fields.hasErrors('base')}" th:errors="*{base}"></span>
+                </div>
+                <div class="field">
+                    <label for="tamano">Tamaño</label>
+                    <select id="tamano" th:field="*{tamano}">
+                        <option value="">-- Elige --</option>
+                        <option th:each="t : ${tamanos}" th:value="${t}" th:text="${t}"></option>
+                    </select>
+                    <span class="error" th:if="${#fields.hasErrors('tamano')}" th:errors="*{tamano}"></span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="topping">Topping</label>
+                <input id="topping" type="text" th:field="*{topping}" placeholder="Ej. Caramelo, galleta triturada">
+                <span class="error" th:if="${#fields.hasErrors('topping')}" th:errors="*{topping}"></span>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label for="precio">Precio ($)</label>
+                    <input id="precio" type="number" step="0.01" min="0" th:field="*{precio}" placeholder="4.50">
+                    <span class="error" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></span>
+                </div>
+                <div class="field check">
+                    <label class="check-label">
+                        <input type="checkbox" th:field="*{conCrema}"> Con crema batida
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a class="btn btn-ghost" th:href="@{/frappes}">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</main>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

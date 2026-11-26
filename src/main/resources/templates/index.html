@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Inicio')}"></head>
+<body>
+<div class="bubbles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<nav th:replace="~{fragments :: nav('home')}"></nav>
+
+<main class="container">
+    <section class="hero">
+        <span class="pill">✨ Colección 2026</span>
+        <h1 class="hero-title">FrostMood</h1>
+        <p class="hero-sub">Frappés helados para cada estado de ánimo.<br>Administra tu menú, tus categorías y tus sabores en un solo lugar.</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" th:href="@{/frappes}">Ver frappés</a>
+            <a class="btn btn-ghost" th:href="@{/categorias}">Ver categorías</a>
+        </div>
+    </section>
+
+    <section class="grid-2">
+        <a class="feature" th:href="@{/categorias}">
+            <div class="feature-icon">🗂️</div>
+            <h2>Categorías</h2>
+            <p>Clásicos, frutales, cafeteros... organiza tu menú por estilo.</p>
+            <span class="feature-count"><strong th:text="${totalCategorias}">0</strong> registradas</span>
+        </a>
+        <a class="feature" th:href="@{/frappes}">
+            <div class="feature-icon">🥤</div>
+            <h2>Frappés</h2>
+            <p>Crea, edita y consulta cada frappé con su base, topping y precio.</p>
+            <span class="feature-count"><strong th:text="${totalFrappes}">0</strong> en el menú</span>
+        </a>
+    </section>
+</main>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

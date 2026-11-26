@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Detalle de categoría')}"></head>
+<body>
+<div class="bubbles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<nav th:replace="~{fragments :: nav('categorias')}"></nav>
+
+<main class="container narrow">
+    <div class="card form-card">
+        <h1>Detalle de categoría</h1>
+        <dl class="details">
+            <dt>Nombre</dt><dd th:text="${categoria.nombre}">Clásicos</dd>
+            <dt>Descripción</dt><dd th:text="${categoria.descripcion}">Descripción</dd>
+        </dl>
+        <div class="form-actions">
+            <a class="btn btn-primary" th:href="@{/categorias/edit/{id}(id=${categoria.id})}">Editar</a>
+            <a class="btn btn-ghost" th:href="@{/categorias}">Volver a la lista</a>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

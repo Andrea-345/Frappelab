@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Detalle de frappé')}"></head>
+<body>
+<div class="bubbles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<nav th:replace="~{fragments :: nav('frappes')}"></nav>
+
+<main class="container narrow">
+    <div class="card form-card">
+        <h1>Detalle de frappé</h1>
+        <dl class="details">
+            <dt>Nombre</dt><dd th:text="${frappe.nombre}">Oreo Cloud</dd>
+            <dt>Categoría</dt><dd th:text="${frappe.categoria.nombre}">Clásicos</dd>
+            <dt>Base</dt><dd th:text="${frappe.base}">Chocolate</dd>
+            <dt>Topping</dt><dd th:text="${frappe.topping}">Galleta</dd>
+            <dt>Tamaño</dt><dd th:text="${frappe.tamano}">Grande</dd>
+            <dt>Precio</dt><dd th:text="'$' + ${#numbers.formatDecimal(frappe.precio, 1, 2)}">$4.50</dd>
+            <dt>Con crema</dt><dd th:text="${frappe.conCrema} ? 'Sí' : 'No'">Sí</dd>
+        </dl>
+        <div class="form-actions">
+            <a class="btn btn-primary" th:href="@{/frappes/edit/{id}(id=${frappe.id})}">Editar</a>
+            <a class="btn btn-ghost" th:href="@{/frappes}">Volver a la lista</a>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

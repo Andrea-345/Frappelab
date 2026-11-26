@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Frappés')}"></head>
+<body>
+<div class="bubbles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<nav th:replace="~{fragments :: nav('frappes')}"></nav>
+
+<main class="container">
+    <div class="page-head">
+        <div>
+            <h1>Frappés</h1>
+            <p class="muted">Todo el menú helado de FrostMood.</p>
+        </div>
+        <a class="btn btn-primary" th:href="@{/frappes/create}">+ Nuevo frappé</a>
+    </div>
+
+    <div class="card">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nombre</th><th>Categoría</th><th>Base</th><th>Topping</th>
+                <th>Tamaño</th><th>Precio</th><th>Crema</th><th class="right">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="f : ${frappes}">
+                <td><strong th:text="${f.nombre}">Oreo Cloud</strong></td>
+                <td><span class="badge" th:text="${f.categoria.nombre}">Clásicos</span></td>
+                <td th:text="${f.base}">Chocolate</td>
+                <td th:text="${f.topping}">Galleta</td>
+                <td th:text="${f.tamano}">Grande</td>
+                <td class="price" th:text="'$' + ${#numbers.formatDecimal(f.precio, 1, 2)}">$4.50</td>
+                <td th:text="${f.conCrema} ? '✔' : '—'">✔</td>
+                <td class="right actions">
+                    <a class="chip" th:href="@{/frappes/edit/{id}(id=${f.id})}">Editar</a>
+                    <a class="chip" th:href="@{/frappes/details/{id}(id=${f.id})}">Detalles</a>
+                    <a class="chip chip-danger" th:href="@{/frappes/delete/{id}(id=${f.id})}">Eliminar</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(frappes)}">
+                <td colspan="8" class="empty">Aún no hay frappés. ¡Crea el primero!</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>
